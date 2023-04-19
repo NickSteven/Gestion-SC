@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import ProfItem from "../components/ProfItem";
 
 const Professeur = () => {
     return (<>
@@ -20,30 +21,7 @@ const Professeur = () => {
                 </div>
                 {/** Datas */}
                 <div className="grid grid-cols-5 gap-10">
-                    <h1 className="text-start p-3">Code Prof</h1>
-                    <h1 className="text-start p-3">Noms</h1>
-                    <h1 className="text-start p-3">Prénoms</h1>
-                    <h1 className="text-start p-3">Grade</h1>
-                    <div className="flex flex-row gap-2 text-start p-3">
-                        <h1>Editer</h1>
-                        <h1>Supprimer</h1>
-                    </div>
-                    <h1 className="text-start p-3">Code Prof</h1>
-                    <h1 className="text-start p-3">Noms</h1>
-                    <h1 className="text-start p-3">Prénoms</h1>
-                    <h1 className="text-start p-3">Grade</h1>
-                    <div className="flex flex-row gap-2 text-start p-3">
-                        <h1>Editer</h1>
-                        <h1>Supprimer</h1>
-                    </div>
-                    <h1 className="text-start p-3">Code Prof</h1>
-                    <h1 className="text-start p-3">Noms</h1>
-                    <h1 className="text-start p-3">Prénoms</h1>
-                    <h1 className="text-start p-3">Grade</h1>
-                    <div className="flex flex-row gap-2 text-start p-3">
-                        <h1>Editer</h1>
-                        <h1>Supprimer</h1>
-                    </div>
+                    <ProfItem codeprof="1" nom="Nick" prenom="Steven" grade="Dev" />
 
                 </div>
             </div>
