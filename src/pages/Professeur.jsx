@@ -1,7 +1,23 @@
 import Navbar from "../components/Navbar";
 import ProfItem from "../components/ProfItem";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Professeur = () => {
+    const navigate = useNavigate()
+
+    // Check login
+    const isLoggedIn = () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/')
+        }
+    }
+
+    useEffect(() => {
+        isLoggedIn()
+    }, [])
+
     return (<>
         <Navbar />
         <div className="mt-10 text-start">
