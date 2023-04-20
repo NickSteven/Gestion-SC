@@ -1,21 +1,42 @@
 import Navbar from "../components/Navbar";
 import ProfItem from "../components/ProfItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../API/Api";
 
 const Professeur = () => {
     const navigate = useNavigate()
+    const [profs, setProfs] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const token = localStorage.getItem('token');
 
-    // Check login
+    // Check if logged in
     const isLoggedIn = () => {
-        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/')
         }
     }
 
+    // Get all prof
+
+    const getAllProfs = async () => {
+        await axios.get(BASE_URL + `/professeurs`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then((response) => {
+                setProfs(response.data)
+            }).catch((error) => {
+                console.log(error)
+            })
+
+    }
+
     useEffect(() => {
         isLoggedIn()
+        getAllProfs()
     }, [])
 
     return (<>
@@ -37,7 +58,12 @@ const Professeur = () => {
                 </div>
                 {/** Datas */}
                 <div className="grid grid-cols-5 gap-10">
-                    <ProfItem codeprof="1" nom="Nick" prenom="Steven" grade="Dev" />
+                    {
+                        profs.map(prof => (
+                            <ProfItem key={prof.id} codeprof={prof.codeprof} nom={prof.nom} prenom={prof.prenom} grade={prof.grade} />
+                        ))
+                    }
+
 
                 </div>
             </div>
